@@ -23,11 +23,31 @@ def parse(text_file):
         genes.append(lst)
     print("Amount Collected:", len(genes))
     return genes
-    pass
+
+def parse_set(text_file):
+    CHROMOSOMES_PER_SET = 1000
+    GENES_PER_CHROMOSOME = 60
+    if parse_set is not type(str):
+        raise TypeError("Please pass the directory as a string.")
+    else:
+        chromosomes = []
+        print("Parsing Set:", text_file)
+        with open(text_file, 'r') as file:
+            data = file.read()
+        parsed_data = data.split('\n')
+        for i in range(CHROMOSOMES_PER_SET):
+            genes = []
+            print("Parsing", parsed_data[i])
+            for j in range(GENES_PER_CHROMOSOME):
+                genes.append(parsed_data[(i * GENES_PER_CHROMOSOME) + (j+1)])
+            print(genes)
+            chromosomes.append(genes)
+        return chromosomes
+
 
 def convert(chromo):
     pass
 
 if __name__ == "__main__":
     print("Script started as main, please input file to parse.")
-    parse(input())
+    parse_set(input())
